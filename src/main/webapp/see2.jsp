@@ -49,14 +49,17 @@ final String driver = "org.mariadb.jdbc.Driver";
 	        pstmt = conn.prepareStatement(sql);
 	        rs = pstmt.executeQuery();
 	        while (rs.next()) {
+	        	// id 값을 받아서
+	        	int id = rs.getInt("id");
 	            String menu = rs.getString("menu");
 	            int price = rs.getInt("price");
 	   %>
       <tr>
+      <!-- 수정이나 삭제할 id 번호 -->
         <td><%=menu %></td>
         <td><%=price %></td>
-        <td><a href="soojung.jsp">수정</a></td>
-        <td><a href="del.jsp">삭제</a></td>
+        <td><a href="soojung.jsp?id=<%=id %>&menu=<%=menu %>&price=<%=price %>">수정</a></td>
+        <td><a href="del.jsp?id=<%=id %>&menu=<%=menu %>">삭제</a></td>
       </tr>
        <%
 			}
