@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>오늘 머 먹지?</h1>
-<a href="insert.jsp">메뉴 입력</a><br>
-<a href="see2.jsp">메뉴 보기</a><br>
-<a href="best.jsp">메뉴 추천</a><br>
-
+수정하세요
 </body>
 </html>

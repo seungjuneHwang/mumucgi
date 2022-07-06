@@ -1,16 +1,34 @@
-<%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.sql.*"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<h1>메뉴 보기</h1>
-<%
-	final String driver = "org.mariadb.jdbc.Driver";
+
+<div class="container">
+  <h2>메뉴 보기</h2>            
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>메뉴</th>
+        <th>가격</th>
+        <th>수정</th>
+        <th>삭제</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+    <%
+final String driver = "org.mariadb.jdbc.Driver";
 	final String DB_IP = "localhost";
 	final String DB_PORT = "3306";
 	final String DB_NAME = "mydb";
@@ -33,15 +51,15 @@
 	        while (rs.next()) {
 	            String menu = rs.getString("menu");
 	            int price = rs.getInt("price");
-	            
-	            %>
-	            <a href='soojung.jsp'>메뉴: <%=menu%></a><br>
-	            가격: <%=price%><br>
-	            <%
-// 	            
-out.println("<a href='soojung.jsp'>메뉴: " + menu + "</a><br>");
-// 	            out.println("가격: " + price+ "<br>");
-	        }
+	   %>
+      <tr>
+        <td><%=menu %></td>
+        <td><%=price %></td>
+        <td><a href="soojung.jsp">수정</a></td>
+        <td><a href="del.jsp">삭제</a></td>
+      </tr>
+       <%
+			}
 	    }
 	} catch (ClassNotFoundException e) {
 	    System.out.println("드라이버 로드 실패");
@@ -65,6 +83,10 @@ out.println("<a href='soojung.jsp'>메뉴: " + menu + "</a><br>");
 	    }
 	}	
 
-%>
+%>      
+    </tbody>
+  </table>
+</div>
+
 </body>
 </html>
